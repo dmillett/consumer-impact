@@ -1,0 +1,1 @@
+(ns consumer-impact.data)
