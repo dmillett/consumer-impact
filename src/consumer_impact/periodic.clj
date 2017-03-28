@@ -34,8 +34,12 @@
 
 (defrecord Element [name symbol anumber aweight group period category state source properties])
 
-
+; http://www.ptable.com/
+; https://en.wikipedia.org/wiki/Periodic_table
 (def table
-  {:H (->Element "Hydrogen" "H" 1 1.008 1 1 (:diatomic_nonmetal categories) (:gas states) (:natural sources) [])
-   :He (->Element "Helium" "He" 2 4.002602 18 1 (:noble_gas categories) (:gas states) (:natural sources) [])
+  {:H (->Element "Hydrogen" "H" 1, 1.008, 1, 1 (:diatomic_nonmetal categories) (:gas states) (:natural sources) [])
+   :He (->Element "Helium" "He" 2, 4.002602, 18, 1 (:noble_gas categories) (:gas states) (:natural sources) [])
+   :Li (->Element "Lithium" "Li" 3, 6.94, 1, 2 (:alkali_metal categories) (:solid states) (:natural sources) [])
+   :Be (->Element "Beryllium" "Be" 4, 9.012182, 2, 2 (:alkali_earth_metal categories) (:solid states) (:natural sources) [])
+   :B (->Element "Boron" "B" 5, 10.81, 2, 13 (:metalloids categories) (:solid states) (:natural sources) [])
    })
