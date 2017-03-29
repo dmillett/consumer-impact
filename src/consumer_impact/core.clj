@@ -4,7 +4,7 @@
 ; todo: move these to 'periodic?
 (defrecord MolarMass [value unit])
 (defrecord Molecule [name code formula molar_mass state]) ; CO2, 44.0095 g/mol,
-(def molecules {:H2O (->Molecule "water" "H2O" "H2O" (->MolarMass 18.0153 "g") (:liquid periodic/states))})
+(def molecules {:H2O (->Molecule "water" "H2O" "H2O" (->MolarMass 18.0153 "g") (:liquid periodic/phases))})
 
 (defrecord Type [name description])
 (def types {:g (->Type "Good" "A tangible manufactured good, foodstuff, etc")
