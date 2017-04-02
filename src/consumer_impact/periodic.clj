@@ -1,48 +1,58 @@
 (ns consumer-impact.periodic)
 
-;; Alkali metal,	Alkaline earth metal,	Lan­thanide, Actinide, Transition metal, Post-​transition metal,
-;; Polyatomic nonmetal,	Diatomic nonmetal, Noble gas
-(defrecord Category [name])
-(def categories {:diatomic_nonmetal (->Category "Diatomic nonmetal")
-                 :noble_gas (->Category "Noble gas")
-                 :polyatomic_nonmetal (->Category "Polyatomic nonmetal")
-                 :superactinide (->Category "Superactinide")
-                 :post_transition_metal (->Category "Post-transition metal")
-                 :metalloids (->Category "Metalloids")
-                 :alkali_metal (->Category "Alkali metal")
-                 :alkali_earth_metal (->Category "Alkaline earth metal")
-                 :pnictogen (->Category "Pnictogen")
-                 :chalcogen (->Category "Chalcogen")
-                 :halogen (->Category "Halogen")
-                 :lanthanoid (->Category "Lanthanoid")
-                 :actinoid (->Category "Actinoid")
-                 :rare_earth_metal (->Category "Rare earth metal")
-                 :transition_metal (->Category "Transition metal")})
+;; Alkali metal,  Alkaline earth metal,  Lan­thanide, Actinide, Transition metal, Post-​transition metal,
+;; Polyatomic nonmetal,  Diatomic nonmetal, Noble gas
+(defrecord Category [description])
+(def categories
+  {:diatomic_nonmetal (->Category "Diatomic nonmetal")
+   :noble_gas (->Category "Noble gas")
+   :polyatomic_nonmetal (->Category "Polyatomic nonmetal")
+   :superactinide (->Category "Superactinide")
+   :post_transition_metal (->Category "Post-transition metal")
+   :metalloids (->Category "Metalloids")
+   :alkali_metal (->Category "Alkali metal")
+   :alkali_earth_metal (->Category "Alkaline earth metal")
+   :pnictogen (->Category "Pnictogen")
+   :chalcogen (->Category "Chalcogen")
+   :halogen (->Category "Halogen")
+   :lanthanoid (->Category "Lanthanoid")
+   :actinide (->Category "Actinoid")
+   :rare_earth_metal (->Category "Rare earth metal")
+   :transition_metal (->Category "Transition metal")})
 
-(defrecord State [name description]) ; solid, liquid, gas, plasma, unknown
-(def phases {:solid   (->State "solid" "Stable, defined shape and volume")
-             :liquid  (->State "liquid" "A nearly incompressible fluid with no defined shape")
-             :gas     (->State "gas" "A compressible fluid with no defined shape")
-             :plasma  (->State "plasma" "No defined shape, electrically conductive, and respond to electromagnetism")
-             :unknown (->State "unkown" "Unknown what state the element does/can exist in.")})
+(defrecord Phase [description]) ; solid, liquid, gas, plasma, unknown
+(def phases
+  {:solid   (->Phase "Stable, defined shape and volume")
+   :liquid  (->Phase "A nearly incompressible fluid with no defined shape")
+   :gas     (->Phase "A compressible fluid with no defined shape")
+   :plasma  (->Phase "No defined shape, electrically conductive, and respond to electromagnetism")
+   :unknown (->Phase "Unknown what state the element does/can exist in.")})
 
 ; Can make 'description' a {} with locale and translations
-(defrecord Source [name description])
-(def sources {:natural (->Source "natural" "An element naturally occuring in nature.")
-              :synthesized (->Source "synthesized" "An element created in a laboratory.")
-              :theorized (->Source "theorized" "An element thought to exist from scientific proof.")})
+(defrecord Source [description])
+(def sources
+  {:natural (->Source "An element naturally occuring in nature.")
+   :synthetic (->Source "An element created in a laboratory.")
+   :rare_synthetic (->Source "A very rare, typically short half life, element that is sythensizable")
+   :theorized (->Source "An element thought to exist from scientific proof.")
+   :rare_theorized (->Source "A very rare element with some known and theoretical properties")})
+
+; todo: Locale specific (Earth, Moon, Mars, Jupiter, etc)
+; todo: density (mass, mole, & volume densities) for an element or molecule
+; todo: location (star, planet_crust, planet_atmosphere, planet_ocean, comet, asteroid, etc)
+(defrecord Abundance [location density description])
 
 (defrecord Element [name anumber aweight group period category origin properties])
-
 ; http://www.ptable.com/
 ; https://en.wikipedia.org/wiki/Periodic_table
 ; todo: fill out :origins in more detail for all element states
-; todo: fill out :properties by states
+; todo: fill out :properties by state/phase
+
 (def table
   ;; Group 1
   {:H (->Element "Hydrogen" 1, 1.008, 1, 1 (:diatomic_nonmetal categories) {(:gas phases) (:natural sources)} {})
    :He (->Element "Helium" 2, 4.002602, 18, 1 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
-   ;: Group 2
+   ;; Group 2
    :Li (->Element "Lithium" 3, 6.94, 1, 2 (:alkali_metal categories) {(:solid phases) (:natural sources)} {})
    :Be (->Element "Beryllium" 4, 9.012182, 2, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
    :B (->Element "Boron" 5, 10.81, 2, 13 (:metalloids categories) {(:solid phases) (:natural sources)} {})
@@ -58,7 +68,7 @@
    :Si (->Element "Silicon" 14, 28.085, 3, 14 (:metalloids categories) {(:solid phases) (:natural sources)} {})
    :P (->Element "Phosphorus" 15, 30.973, 3, 15 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
    :S (->Element "Sulfur" 16, 32.06, 3, 16 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
-   :Cl (->Element "Chlorine" 17, 35.45, 3, 17 (:halogen categories) {(:gas phases) (:natural sources)} {})
+   :Cl (->Element "Chlorine" 17, 35.45, 3, 17 (:diatomic_nonmetal categories) {(:gas phases) (:natural sources)} {})
    :Ar (->Element "Argon" 18, 39.948, 3, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
    ;; Group 4
    :K (->Element "Potassium" 19, 39.0983, 4, 1 (:alkali_metal categories) {(:solid phases) (:natural sources)} {})
@@ -73,4 +83,69 @@
    :Ni (->Element "Nickel" 28, 58.6934, 4, 10 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
    :Cu (->Element "Copper" 29, 63.546, 4, 11 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
    :Zn (->Element "Zinc" 30, 65.38, 4, 12 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ga (->Element "Gallium" 31 69.723, 4, 13 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ge (->Element "Germanium" 32, 72.630, 4, 14 (:metalloids categories) {(:solid phases) (:natural sources)} {})
+   :As (->Element "Arsenic" 33, 74.922, 4, 15 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
+   :S (->Element "Selenium" 34, 78.971, 4, 16 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
+   :Cl (->Element "Bromine" 35, 79.904, 4, 17 (:polyatomic_nonmetal categories) {(:liquid phases) (:natural sources)} {})
+   :Ar (->Element "Krypton" 36, 83.798, 4, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
+   ;; Group 5 todo fix
+   :Rb (->Element "Rubidium" 37, 85.468, 5, 1 (:alkali_metal categories) {(:solid phases) (:natural sources)} {})
+   :Sr (->Element "Strontium" 38, 87.62, 5, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
+   :Y (->Element "Yttrium" 39, 88.906, 5, 3 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Zr (->Element "Zirconium" 40, 91.224, 5, 4 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Nb (->Element "Niobium" 41, 92.906, 5, 5 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Mo (->Element "Molybdenum" 42, 95.95, 5, 6 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Tc (->Element "Technetium" 43, 98.0, 5, 7 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ru (->Element "Ruthenium" 44, 101.07, 5, 8 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Rh (->Element "Rhodium" 45, 102.91, 5, 9 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Pd (->Element "Palladium" 46, 106.42, 5, 10 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ag (->Element "Silver" 47, 107.87, 5, 11 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Cd (->Element "Cadmium" 48, 112.41, 5, 12 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :In (->Element "Indium" 49 114.82, 5, 13 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Sn (->Element "Tin" 50, 118.71, 5, 14 (:metalloids categories) {(:solid phases) (:natural sources)} {})
+   :Sb (->Element "Antimony" 51, 121.76, 5, 15 (:metalloids categories) {(:solid phases) (:natural sources)} {})
+   :Te (->Element "Tellurium" 52, 127.60, 5, 16 (:metalloids categories) {(:solid phases) (:natural sources)} {})
+   :I (->Element "Iodine" 53, 126.90, 5, 17 (:diatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
+   :Xe (->Element "Xenon" 54, 131.29, 5, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
+   ;; Group 6 todo: check lanthanoid origins (natural vs synthetic)
+   :Cs (->Element "Caesium" 55, 132.91, 6, 1 (:alkali_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ba (->Element "Barium" 56, 137.33, 6, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
+   :La (->Element "Lanthanum" 57, 138.91, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Ce (->Element "Cerium" 58, 140.12, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Pr (->Element "Praseodymium" 59, 140.91, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Nd (->Element "Neodymium" 60, 144.24, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Pm (->Element "Promethium" 61, 145.0, 6, 3 (:lanthanoid categories) {(:solid phases) (:synthesized sources)} {})
+   :Sm (->Element "Samarium" 62, 150.36, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Eu (->Element "Europium" 63, 151.96, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Gd (->Element "Gadolinium", 64, 157.25, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Tb (->Element "Terbium", 65, 158.93, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Dy (->Element "Dysprosium", 66, 162.50, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Ho (->Element "Holmium", 67, 164.93, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Er (->Element "Erbium", 68, 167.26, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Tm (->Element "Thulium", 69, 168.93, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Yb (->Element "Ytterbium", 70, 173.05, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Lu (->Element "Lutetium", 71, 174.97, 6, 3 (:lanthanoid categories) {(:solid phases) (:natural sources)} {})
+   :Hf (->Element "Halfnium" 72, 178.49, 6, 4 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ta (->Element "Tantalum" 73, 180.95, 6, 5 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :W (->Element "Tungsten" 74, 183.84, 6, 6 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Re (->Element "Rhenium" 75, 186.21, 6, 7 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Os (->Element "Osmium" 76, 190.23, 6, 8 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ir (->Element "Iridium" 77, 192.22, 6, 9 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Pt (->Element "Platinum" 78, 195.08, 6, 10 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Au (->Element "Gold" 79, 196.97, 6, 11 (:transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Hg (->Element "Mercury" 80, 180.95, 6, 12 (:transition_metal categories) {(:liquid phases) (:natural sources)} {})
+   :Tl (->Element "Thallium" 81, 204.38, 6 13 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Pb (->Element "Lead" 82, 207.2, 6 14 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Bi (->Element "Bismuth" 83, 208.98, 6 15 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
+   :Po (->Element "Polonium" 84, 209.0, 6 16 (:post_transition_metal categories) {(:solid phases) (:rare_synthetic sources)} {})
+   :At (->Element "Astatine" 85, 210.0, 6, 17 (:metalloids categories) {(:solid phases) (:rare_theorized sources)} {})
+   :Rn (->Element "Radon" 86, 222.0, 6, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
+   ;; Group 7
+   :Fr (->Element "Francium" 87, 223.0, 7, 1 (:alkali_metal categories) {(:solid phases) (:rare_theorized sources)} {})
+   :Ra (->Element "Radium" 88, 226.0, 7, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
+   :Ac (->Element "Actinium" 89, 227.0, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
+   :Th (->Element "Thorium" 90, 232.0377, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
+   :Pa (->Element "Protactinum", 91, 231.035, 7, 3 (:actinide categories) {} {})
+
    })
