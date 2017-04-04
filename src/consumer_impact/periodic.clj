@@ -18,7 +18,8 @@
    :lanthanoid (->Category "Lanthanoid")
    :actinide (->Category "Actinoid")
    :rare_earth_metal (->Category "Rare earth metal")
-   :transition_metal (->Category "Transition metal")})
+   :transition_metal (->Category "Transition metal")
+   :unkown (->Category "Unknown, but theorized")})
 
 (defrecord Phase [description]) ; solid, liquid, gas, plasma, unknown
 (def phases
@@ -39,7 +40,7 @@
 
 ; todo: Locale specific (Earth, Moon, Mars, Jupiter, etc)
 ; todo: density (mass, mole, & volume densities) for an element or molecule
-; todo: location (star, planet_crust, planet_atmosphere, planet_ocean, comet, asteroid, etc)
+; todo: location (nebulae, stellar body, star, planet_crust, planet_atmosphere, planet_ocean, comet, asteroid, etc)
 (defrecord Abundance [location density description])
 
 (defrecord Element [name anumber aweight group period category origin properties])
@@ -146,6 +147,32 @@
    :Ra (->Element "Radium" 88, 226.0, 7, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
    :Ac (->Element "Actinium" 89, 227.0, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
    :Th (->Element "Thorium" 90, 232.0377, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
-   :Pa (->Element "Protactinum", 91, 231.035, 7, 3 (:actinide categories) {} {})
-
+   :Pa (->Element "Protactinum", 91, 231.035, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
+   :U (->Element "Uranium", 92, 238.028, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
+   :Np (->Element "Neptunium", 93, 237.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Pu (->Element "Plutonium", 94, 244.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Am (->Element "Americium", 95, 243.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Cm (->Element "Curium", 96, 247.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Bk (->Element "Berkelium", 97, 247.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Cf (->Element "Californium", 98, 251.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Es (->Element "Einsteinium", 99, 252.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Fm (->Element "Fermium", 100, 257.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Md (->Element "Mendelevium", 101, 258.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :No (->Element "Nobelium", 102, 259.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Lr (->Element "Lawrencium", 103, 266.0, 7, 3 (:actinide categories) {(:solid phases) (:synthetic sources)} {})
+   :Rf (->Element "Rutherfordium", 104, 267.0, 7, 4 (:transition_metal categories) {(:solid phases) (:synthetic sources)} {})
+   :Db (->Element "Dubnium", 105, 268.0, 7, 5 (:transition_metal categories) {(:solid phases) (:synthetic sources)} {})
+   :Sg (->Element "Seaborgium", 106, 271.0, 7, 6 (:transition_metal categories) {(:solid phases) (:synthetic sources)} {})
+   :Bh (->Element "Bohrium", 107, 272.0, 7, 7 (:transition_metal categories) {(:solid phases) (:synthetic sources)} {})
+   :Hs (->Element "Hassium", 108, 277.0, 7, 8 (:transition_metal categories) {(:solid phases) (:synthetic sources)} {})
+   :Mt (->Element "Meitnerium", 109, 278.0, 7, 9 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; transition_metal
+   :Ds (->Element "Darmstadtium", 110, 281.0, 7, 10 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; transition_metal
+   :Rg (->Element "Roentgenium", 111, 282.0, 7, 11 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; transition_metal
+   :Cn (->Element "Copernicium", 112, 285.0, 7, 12 (:transition_metal categories) {(:gas phases) (:synthetic sources)} {})
+   :Nh (->Element "Nihonium", 113, 286.0, 7, 13 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; post_transition_metal
+   :Fl (->Element "Flerovium", 114, 289.0, 7, 14 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; post_transition_metal
+   :Mc (->Element "Moscovium", 115, 290.0, 7, 15 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; post_transition_metal
+   :Lv (->Element "Livermorium", 116, 293.0, 7, 16 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; post_transition_metal
+   :Ts (->Element "Tennessine", 117, 294.0, 7, 17 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; post_transition_metal
+   :Og (->Element "Oganesson", 118, 294.0, 7, 18 (:unknown categories) {(:solid phases) (:synthetic sources)} {}) ; noble_gas
    })

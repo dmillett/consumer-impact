@@ -7,7 +7,8 @@
                  [frinj "0.2.5"]]
   :plugins [[lein-kibit "0.1.3"]
             [jonase/eastwood "0.2.3"]
-            [lein-ancient "0.6.10"]]
+            [lein-ancient "0.6.10"]
+            [com.walmartlabs/lacinia "0.14.0"]]
   :jvm-opts ["-Xms256m" "-Xmx256m"]
   :repl-options {:init (do
                          (use 'consumer-impact.core)

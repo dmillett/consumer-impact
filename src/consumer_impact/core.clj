@@ -11,11 +11,11 @@
             :s (->Type "Service" "A provided service like accounting, legal, lawn care, etc")})
 
 ; A source of record documenting a product (manufacturer, third party, government agency, etc)
-(defrecord Source [name type verification accreditation])
-(def sources {:company (->Source "Company" nil {} {})
-              :individual (->Source "Individual" nil {} {})
-              :government (->Source "Government" nil {} {})
-              :laboratory (->Source "Laboratory" nil {} {})})
+(defrecord Source [type verification accreditation])
+(def sources {:company (->Source nil {} {})
+              :individual (->Source nil {} {})
+              :government (->Source nil {} {})
+              :laboratory (->Source nil {} {})})
 
 ; A company or individual creating/manufacturing the product
 (defrecord Provider [id date location])
