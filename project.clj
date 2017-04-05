@@ -13,6 +13,7 @@
   :repl-options {:init (do
                          (use 'consumer-impact.core)
                          (use 'consumer-impact.periodic)
+                         (use 'consumer-impact.molecule)
                          (use 'consumer-impact.tools)
                          (println "Loaded 'consumer-impact' repl resources")
                          )})

@@ -1,7 +1,5 @@
 (ns consumer-impact.periodic)
 
-;; Alkali metal,  Alkaline earth metal,  Lan­thanide, Actinide, Transition metal, Post-​transition metal,
-;; Polyatomic nonmetal,  Diatomic nonmetal, Noble gas
 (defrecord Category [description])
 (def categories
   {:diatomic_nonmetal (->Category "Diatomic nonmetal")
@@ -34,9 +32,8 @@
 (def sources
   {:natural (->Source "An element naturally occuring in nature.")
    :synthetic (->Source "An element created in a laboratory.")
-   :rare_synthetic (->Source "A very rare, typically short half life, element that is sythensizable")
    :theorized (->Source "An element thought to exist from scientific proof.")
-   :rare_theorized (->Source "A very rare element with some known and theoretical properties")})
+   })
 
 ; todo: Locale specific (Earth, Moon, Mars, Jupiter, etc)
 ; todo: density (mass, mole, & volume densities) for an element or molecule
@@ -87,9 +84,9 @@
    :Ga (->Element "Gallium" 31 69.723, 4, 13 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
    :Ge (->Element "Germanium" 32, 72.630, 4, 14 (:metalloids categories) {(:solid phases) (:natural sources)} {})
    :As (->Element "Arsenic" 33, 74.922, 4, 15 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
-   :S (->Element "Selenium" 34, 78.971, 4, 16 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
-   :Cl (->Element "Bromine" 35, 79.904, 4, 17 (:polyatomic_nonmetal categories) {(:liquid phases) (:natural sources)} {})
-   :Ar (->Element "Krypton" 36, 83.798, 4, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
+   :Se (->Element "Selenium" 34, 78.971, 4, 16 (:polyatomic_nonmetal categories) {(:solid phases) (:natural sources)} {})
+   :Br (->Element "Bromine" 35, 79.904, 4, 17 (:polyatomic_nonmetal categories) {(:liquid phases) (:natural sources)} {})
+   :Kr (->Element "Krypton" 36, 83.798, 4, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
    ;; Group 5 todo fix
    :Rb (->Element "Rubidium" 37, 85.468, 5, 1 (:alkali_metal categories) {(:solid phases) (:natural sources)} {})
    :Sr (->Element "Strontium" 38, 87.62, 5, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
@@ -139,11 +136,11 @@
    :Tl (->Element "Thallium" 81, 204.38, 6 13 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
    :Pb (->Element "Lead" 82, 207.2, 6 14 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
    :Bi (->Element "Bismuth" 83, 208.98, 6 15 (:post_transition_metal categories) {(:solid phases) (:natural sources)} {})
-   :Po (->Element "Polonium" 84, 209.0, 6 16 (:post_transition_metal categories) {(:solid phases) (:rare_synthetic sources)} {})
-   :At (->Element "Astatine" 85, 210.0, 6, 17 (:metalloids categories) {(:solid phases) (:rare_theorized sources)} {})
+   :Po (->Element "Polonium" 84, 209.0, 6 16 (:post_transition_metal categories) {(:solid phases) (:synthetic sources)} {})
+   :At (->Element "Astatine" 85, 210.0, 6, 17 (:metalloids categories) {(:solid phases) (:theorized sources)} {})
    :Rn (->Element "Radon" 86, 222.0, 6, 18 (:noble_gas categories) {(:gas phases) (:natural sources)} {})
    ;; Group 7
-   :Fr (->Element "Francium" 87, 223.0, 7, 1 (:alkali_metal categories) {(:solid phases) (:rare_theorized sources)} {})
+   :Fr (->Element "Francium" 87, 223.0, 7, 1 (:alkali_metal categories) {(:solid phases) (:theorized sources)} {})
    :Ra (->Element "Radium" 88, 226.0, 7, 2 (:alkali_earth_metal categories) {(:solid phases) (:natural sources)} {})
    :Ac (->Element "Actinium" 89, 227.0, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})
    :Th (->Element "Thorium" 90, 232.0377, 7, 3 (:actinide categories) {(:solid phases) (:natural sources)} {})

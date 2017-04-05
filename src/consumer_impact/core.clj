@@ -1,21 +1,19 @@
 (ns consumer-impact.core
   (:require [consumer-impact.periodic :as periodic]))
 
-; todo: move these to 'periodic?
-(defrecord MolarMass [value unit])
-(defrecord Molecule [name code formula molar_mass state]) ; CO2, 44.0095 g/mol,
-(def molecules {:H2O (->Molecule "water" "H2O" "H2O" (->MolarMass 18.0153 "g") (:liquid periodic/phases))})
-
 (defrecord Type [name description])
-(def types {:g (->Type "Good" "A tangible manufactured good, foodstuff, etc")
-            :s (->Type "Service" "A provided service like accounting, legal, lawn care, etc")})
+(def types
+  {:g (->Type "Good" "A tangible manufactured good, foodstuff, etc")
+   :s (->Type "Service" "A provided service like accounting, legal, lawn care, etc")})
 
 ; A source of record documenting a product (manufacturer, third party, government agency, etc)
-(defrecord Source [type verification accreditation])
-(def sources {:company (->Source nil {} {})
-              :individual (->Source nil {} {})
-              :government (->Source nil {} {})
-              :laboratory (->Source nil {} {})})
+(defrecord ProductSource [type verification accreditation])
+(def product_sources
+  {:company (->ProductSource nil {} {})
+   :individual (->ProductSource nil {} {})
+   :government (->ProductSource nil {} {})
+   :laboratory (->ProductSource nil {} {})
+   :natural (->ProductSource nil {} {})})
 
 ; A company or individual creating/manufacturing the product
 (defrecord Provider [id date location])
