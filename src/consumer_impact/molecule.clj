@@ -36,7 +36,7 @@
     (parse-molecule molecule)
     ) )
 
-
+; test reference, load/cache from DB see graphql
 (def molecules
   {:H2O (->Molecule "water" "H2O" (->MolarMass 18.0153 "g") (:liquid p/phases))
    :C13H18O2 (->Molecule "ibuprofen" "C13H18O2" nil (:solid p/phases))
