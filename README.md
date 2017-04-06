@@ -31,8 +31,7 @@ There should be a product database that details, on a per-unit basis, what eleme
 resources were consumed & produced for a given product. It becomes easy to calculate which and how
 much was consumed & produced via recursion.
 
-### clojars 
-**[consumer-impact "0.1.0-SNAPSHOT]**
+### clojars (todo) 
 
 ### parsing molecular formulas
 
@@ -57,5 +56,4 @@ much was consumed & produced via recursion.
 
 Copyright © 2016 FIXME
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the GNU Lesser General Public License, version 2.1.
