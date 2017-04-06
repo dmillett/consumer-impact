@@ -31,6 +31,28 @@ There should be a product database that details, on a per-unit basis, what eleme
 resources were consumed & produced for a given product. It becomes easy to calculate which and how
 much was consumed & produced via recursion.
 
+### clojars 
+**[consumer-impact "0.1.0-SNAPSHOT]**
+
+### parsing molecular formulas
+
+```clojure
+; Handles keyword with/without '_'
+=> (def water (parse-molecule :H2O))
+'("H2" "O")
+
+; Handles strings with/without '_'
+=> (def ibuprofen (parse-molecule "C13_H18_O2"))
+'("C13" "H18" "O2")
+
+; Determines molar mass
+=> (def mm_water (molar-mass :H2O))
+18.0185
+
+=> (def mm_ibuprofen (molar-mass :C13_H18_O2))
+206.285
+```
+
 ## License
 
 Copyright © 2016 FIXME

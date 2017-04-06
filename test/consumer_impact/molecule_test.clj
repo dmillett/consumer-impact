@@ -13,3 +13,10 @@
       nil (parse-molecule nil)
       '("C13" "H18" "O2") (parse-molecule :C13H18O2) ; ibuprofen - developer candy
       )))
+
+(deftest test-molar-mass
+  (are [x y] (= x y)
+    nil (molar-mass :X1)
+    18.015 (molar-mass :H2O)
+    206.285 (molar-mass :C13H18O2)
+    ) )

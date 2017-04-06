@@ -1,5 +1,10 @@
 (ns consumer-impact.data)
 
-;; Load EDN (periodic info)
 ;; Load molecular database information
-;; Load database product information
+; datomic or postgresql
+
+;; Load Producer database information
+; datomic
+
+;; Load product database information
+; datomic

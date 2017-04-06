@@ -40,7 +40,7 @@
 ; todo: location (nebulae, stellar body, star, planet_crust, planet_atmosphere, planet_ocean, comet, asteroid, etc)
 (defrecord Abundance [location density description])
 
-(defrecord Element [name anumber aweight group period category origin properties])
+(defrecord Element [name anumber mmass group period category origin properties])
 ; http://www.ptable.com/
 ; https://en.wikipedia.org/wiki/Periodic_table
 ; todo: fill out :origins in more detail for all element states
