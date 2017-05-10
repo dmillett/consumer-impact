@@ -35,5 +35,4 @@
 ; 8 product units consumed X8 mixed units, produced Y8 mixed units
 (defrecord Consumed [product_units composition_units])
 (defrecord Produced [product_units produced_units])
-
 (defrecord Product [id version date type provider location source consumed produced])

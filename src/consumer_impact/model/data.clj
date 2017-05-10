@@ -1,4 +1,4 @@
-(ns consumer-impact.data)
+(ns consumer-impact.model.data)
 
 ; todo: Rely on GraphQl (lacinia) to adapt this information into specific querie results
 
