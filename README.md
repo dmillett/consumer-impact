@@ -54,6 +54,6 @@ much was consumed & produced via recursion.
 
 ## License
 
-Copyright © 2016 FIXME
+Copyright © 2016 dmillett
 
 Distributed under the GNU Lesser General Public License, version 2.1.
