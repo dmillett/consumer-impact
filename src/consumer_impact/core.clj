@@ -1,5 +1,9 @@
 (ns consumer-impact.core
-  (:require [consumer-impact.periodic :as periodic]))
+  (:require [consumer-impact.periodic :as p]
+            [clojure.spec.alpha :as s])
+  (:use [frinj.repl]))
+
+(frinj-init!)
 
 (defrecord Type [name description])
 (def types
@@ -20,6 +24,19 @@
 
 ; todo: work with 'frinj and conversions
 (defrecord Amount [value unit])
+
+; todo: add specs here
+(defn add-amounts
+  "Add Amount records and normalize units with 'frinj"
+  [amounts]
+  (reduce
+    (fn [total amt]
+      (if (number? total)
+        (fj (:value amt) (:unit amt))
+        (fj+ total (fj (:value amt) (:unit amt)))
+        ) )
+    0.0
+    amounts))
 
 ;
 ; (def water_bottle_consumed (->Consumed 1 [{:product nil, :molecule (:H2O molecules), :amount (->Amount 24 "oz")}
