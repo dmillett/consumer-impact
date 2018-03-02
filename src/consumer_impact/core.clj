@@ -7,7 +7,7 @@
 
 (defrecord Type [name description])
 (def types
-  {:g (->Type "Good" "A tangible manufactured good, foodstuff, etc")
+  {:g (->Type "Good" "A tangible good, foodstuff, etc")
    :s (->Type "Service" "A provided service like accounting, legal, lawn care, etc")})
 
 ; A source of record documenting a product (manufacturer, third party, government agency, etc)
@@ -20,10 +20,28 @@
    :natural (->ProductSource nil {} {})})
 
 ; A company or individual creating/manufacturing the product
-(defrecord Provider [id date location])
-
-; todo: work with 'frinj and conversions
+(defrecord Provider [id name date location])
 (defrecord Amount [value unit])
+(defrecord Coordinate [lat lon])
+(defrecord Component [molecule amount])
+(defrecord Product [name version date type provider location source amount consumed produced])
+
+
+(def chicago_ll (->Coordinate 41.886460, -87.637695))
+
+(def water_bottle
+  (->Product "nestle-steals" 1.0 "2018-01-01" (:g types) "nestle" "lat-lon" (:natural product_sources) (->Amount 16 "oz")
+             [(->Product "ChicagoRiver" 1.0 "2018-01-01" (:g types) "Chicago" chicago_ll (:natural product_sources) (->Amount 16 "oz") nil nil)
+              () ; plastic for bottle
+              () ; plastic/paper for label
+              () ; electricity used
+              ]
+             [() ; plastic emissions (oil refinery emissions, shipping oil to refinery emissions, mining oil emissions)
+              () ; electricity emissions (solar, wind, nuclear, coal, natural gas, turkey dung, etc)
+              () ; label emissions
+              ]
+             ))
+
 
 ; todo: add specs here
 (defn add-amounts
@@ -37,19 +55,3 @@
         ) )
     0.0
     amounts))
-
-;
-; (def water_bottle_consumed (->Consumed 1 [{:product nil, :molecule (:H2O molecules), :amount (->Amount 24 "oz")}
-;                                           {:product (:some_plastic), :molecule nil, :amount (->Amount 2.1 "oz")}
-;                                           {:product (:some_energy), :molecule nil, :amount (->Amount 20 "joules")}])
-;
-; todo notes: Water purification uses excess energy or water
-; todo notes: nearly 1:1 passthrough from consumed to produced for the plastic water bottle itself (research numbers)
-; (def water_bottle_produced (->Produced 1 [{:product nil, :molecule (:H2O molecules), :amount (->Amount 12 "oz")}
-;                                           {:product (:some_plastic), :molecule nil, :amount (->Amount 2.0 "oz")}])
-;
-; 1 product unit consumed X1 mixed units, produced Y1 mixed units
-; 8 product units consumed X8 mixed units, produced Y8 mixed units
-(defrecord Consumed [product_units composition_units])
-(defrecord Produced [product_units produced_units])
-(defrecord Product [id version date type provider location source consumed produced])
