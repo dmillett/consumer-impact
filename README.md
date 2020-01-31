@@ -12,7 +12,7 @@ As an example:
 Think in per-unit terms how many element/molecular resources are consumed & produced
 when mining crude oil and processing it to gasoline, diesel, jet fuel, etc.
 
-   - **delivery to station from refinery:**
+   - **delivery to gas station from refinery:**
      - consumed: tanker truck fuel per unit consumption/emissions
      - produced: (CO, CO2, H2O, hydrocarbons) transporting fuel to gas station
    - **refining of oil to gasoline:**
