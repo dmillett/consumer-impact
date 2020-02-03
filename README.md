@@ -1,14 +1,22 @@
 # consumer-impact
 
+**TODO**: www.consumer-impact.org website
+**TODO**: hosting (Digital Ocean, etc)
+
 A Clojure library designed to track and educate resource utilization, via consumption and production
 for all goods and services. In essence, how much was consumed and produced for any product or
 service purchased. The vast majority of these resources are already itemized and used as capital
 expenditures by corporations and services entities as part of normal financial operations. The Consumers
 deserve to know what they are buying and how it is manufactured/provided.  
 
-As an example:
 
-#### A gallon of 87 octane gasoline purchased from a gas station
+<a name="usage"/></a>
+## Usage
+
+<a name="examples"/></a>
+### Examples
+
+#### Example: A gallon of 87 octane gasoline purchased from a gas station
 Think in per-unit terms how many element/molecular resources are consumed & produced
 when mining crude oil and processing it to gasoline, diesel, jet fuel, etc.
 
@@ -24,8 +32,6 @@ when mining crude oil and processing it to gasoline, diesel, jet fuel, etc.
      - produced: combustion process and/or electricity during transit
    - **retrieving oil from a geographic location:**
      - 
-
-## Usage
 
 There should be a product database that details, on a per-unit basis, what element and molecular
 resources were consumed & produced for a given product. It becomes easy to calculate which and how
@@ -51,6 +57,11 @@ much was consumed & produced via recursion.
 => (def mm_ibuprofen (molar-mass :C13_H18_O2))
 206.285
 ```
+
+<a name="collaboration"/></a>
+## Collaboration
+
+**TODO**
 
 ## License
 
