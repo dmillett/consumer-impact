@@ -1,7 +1,8 @@
 # consumer-impact
 
+Funded by me:
 **TODO**: www.consumer-impact.org website
-**TODO**: hosting (Digital Ocean, etc)
+**TODO**: hosting (Linode, etc)
 
 A Clojure library designed to track and educate resource utilization, via consumption and production
 for all goods and services. In essence, how much was consumed and produced for any product or
