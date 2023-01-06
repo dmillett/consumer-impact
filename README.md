@@ -59,10 +59,31 @@ much was consumed & produced via recursion.
 206.285
 ```
 
+<<<<<<< HEAD
 <a name="collaboration"/></a>
 ## Collaboration
 
 **TODO**
+=======
+### unit conversion(s)
+
+```clojure
+;; A map of conversion units to conversion function
+(require '[consumer-impact.conversions :as cvrs])
+
+;; grams to pounds
+(convert cvrs/conversions [:g :lb] 454.0)
+1.000898842
+
+;; moles -> grams
+(convert cvrs/conversions [:mole :g] :N 1.0)
+14.007
+
+;; multiple units
+(convert cvrs/conversions [[:ft :s] [:miles :hr]] 6.0)
+4.090909090909091
+```
+>>>>>>> df6a73e (Adding (conversions) for unit conversion for some mass, length, time functions. A map may also be used for conversions.)
 
 ## License
 
