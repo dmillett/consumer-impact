@@ -59,12 +59,11 @@ much was consumed & produced via recursion.
 206.285
 ```
 
-<<<<<<< HEAD
 <a name="collaboration"/></a>
 ## Collaboration
 
 **TODO**
-=======
+
 ### unit conversion(s)
 
 ```clojure
@@ -83,7 +82,6 @@ much was consumed & produced via recursion.
 (convert cvrs/conversions [[:ft :s] [:miles :hr]] 6.0)
 4.090909090909091
 ```
->>>>>>> df6a73e (Adding (conversions) for unit conversion for some mass, length, time functions. A map may also be used for conversions.)
 
 ## License
 
