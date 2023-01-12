@@ -1,8 +1,7 @@
 (ns consumer-impact.conversions
-  (:require [clojure.math.numeric-tower :as math]
-            [consumer-impact.periodic :as ci]))
+  (:require [consumer-impact.periodic :as ci]))
 
-(defn- group-by-index
+(defn group-by-index
   "Group a collection of equal length vectors by index. "
   [data]
   (into []
@@ -13,7 +12,7 @@
         data)
       ) ) )
 
-(def AVAGADROS_NUM (* 6.02214076 (math/expt 10 23)))
+(def AVAGADROS_NUM (* 6.02214076 (Math/pow 10.0 23.0)))
 
 (def conversions
   "A map of unit conversions where each conversion pair is defined by [from to]
@@ -33,6 +32,7 @@
    [:C :F] (fn [v] (+ 32.0 (* v (/ 9 5))))
    [:F :C] (fn [v] (* (/ 5 9) (- v 32.0)))
    ;; distance
+   [:mm :in] (fn [v] (* v 0.03937))
    [:m :ft] (fn [v] (* v 3.28084))
    [:m :km] (fn [v] (* 1000.0 v))
    [:km :m] (fn [v] (/ v 1000.0))

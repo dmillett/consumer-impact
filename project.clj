@@ -5,8 +5,7 @@
             :url "https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"}
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [frinj "0.2.5"]
-                 [com.datomic/datomic-free "0.9.5697"]
-                 [org.clojure/math.numeric-tower "0.0.5"]]
+                 [com.datomic/datomic-free "0.9.5697"]]
   :plugins [[lein-kibit "0.1.3"]
             [jonase/eastwood "0.2.3"]
             [lein-ancient "1.0.0-RC3"]
